@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: windows-2022
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          
       - run: |
           Get-Location | Foreach-Object { $_.Path }
           Get-ChildItem -Path .
@@ -36,8 +41,3 @@ jobs:
           py script.py
           deactivate
 
-      - run: |
-          .win64-venv\Scripts\activate
-          py -m pip install multipledispatch signature_dispatch
-          py .\script.py
-          deactivate
