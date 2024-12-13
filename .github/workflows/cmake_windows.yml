@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
-          
+
       - run: |
           Get-Location | Foreach-Object { $_.Path }
           Get-ChildItem -Path .
@@ -33,11 +33,9 @@ jobs:
           deactivate
 
       - run: |
-           Get-Location 
-
-      - run: |
           .win64-venv\Scripts\activate
           py -m pip install multipledispatch signature_dispatch
+          py --version  # still >= 3.12.x expected
           py script.py
           deactivate
 
