@@ -10,23 +10,23 @@ jobs:
     runs-on: windows-2022
     steps:
       - run: |
-        $env:PATH -split ';'    
-        py --version  # >= 3.12.x expected
-        py -m pip -V
+          $env:PATH -split ';'
+          py --version  # >= 3.12.x expected
+          py -m pip -V
 
       - run: |
-        py -m venv .win64-venv
-        .\.win64-venv\Scripts\activate
-        py -m pip install conan
-        deactivate
+          py -m venv .win64-venv
+          .\.win64-venv\Scripts\activate
+          py -m pip install conan
+          deactivate
 
       - run: |
-        .\.win64-venv\Scripts\activate
-        conan profile detect --force --name default
-        deactivate
+          .\.win64-venv\Scripts\activate
+          conan profile detect --force --name default
+          deactivate
 
       - run: |
-        .win64-venv\Scripts\activate
-        py -m pip install multipledispatch signature_dispatch
-        py script.py
-        deactivate
+          .win64-venv\Scripts\activate
+          py -m pip install multipledispatch signature_dispatch
+          py script.py
+          deactivate
