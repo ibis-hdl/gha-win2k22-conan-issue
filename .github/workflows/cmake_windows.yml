@@ -37,7 +37,6 @@ jobs:
           deactivate
 
       - run: |
-        continue-on-error: true
           .win64-venv\Scripts\activate
           py -m pip install multipledispatch signature_dispatch
           py .\script.py
