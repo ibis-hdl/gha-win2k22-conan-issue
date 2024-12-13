@@ -10,6 +10,8 @@ jobs:
     runs-on: windows-2022
     steps:
       - run: |
+          Get-Location | Foreach-Object { $_.Path }
+          Get-ChildItem -Path .
           $env:PATH -split ';'
           py --version  # >= 3.12.x expected
           py -m pip -V
@@ -26,7 +28,17 @@ jobs:
           deactivate
 
       - run: |
+           Get-Location 
+
+      - run: |
           .win64-venv\Scripts\activate
           py -m pip install multipledispatch signature_dispatch
           py script.py
+          deactivate
+
+      - run: |
+        continue-on-error: true
+          .win64-venv\Scripts\activate
+          py -m pip install multipledispatch signature_dispatch
+          py .\script.py
           deactivate
